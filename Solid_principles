@@ -1,4 +1,89 @@
 SOLID PRINCIPLES
 ----------------
+//Valid Example for single responsibility
+-----------------------------------------
+class WatchMan
+{
+    void openDoor()
+    {
+        System.out.println("Open a door...");
+    }
+}
+
+class Receptionist
+{
+    void getDetails()
+    {
+        System.out.println("Enter the valid details...");
+    }
+}
+
+class RoomBoy
+{
+    void serveLunch()
+    {
+        System.out.println("Go and get my lunch...");
+    }
+}
+
+class Cleaner
+{
+    void clean()
+    {
+        System.out.println("Clean a room...");
+    }
+}
+
+public class Employee
+{
+    public static void main(String [] args)
+    {
+        WatchMan watchman=new WatchMan();
+        watchman.openDoor();
+        Receptionist receptionist=new Receptionist();
+        receptionist.getDetails();
+        RoomBoy roomboy=new RoomBoy();
+        roomboy.serveLunch();
+        Cleaner cleaner=new Cleaner();
+        cleaner.clean();
+    }
+}
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Invalid Example for single responsiblity:
+----------------------------------------
+public class Employee
+{
+    private void watchMan()
+    {
+        System.out.println("Open the door...");
+    }
+    
+    private void receptionist()
+    {
+        System.out.println("Enter the details...");
+    }
+    
+    private void roomBoy()
+    {
+        System.out.println("Carry on my lugguage...");
+    }
+    
+    private void cleaner()
+    {
+        System.out.println("Clean the rooms...");
+    }
+    
+    public static void main(String [] args)
+    {
+        Employee employee=new Employee();
+        employee.watchMan();
+        employee.receptionist();
+        employee.roomBoy();
+        employee.cleaner();
+    }
+}
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 

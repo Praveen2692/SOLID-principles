@@ -1,5 +1,7 @@
 SOLID PRINCIPLES
 ----------------
+---> Single Responsibility Principle (SRP) states that a class should have only one reason to change.
+It means the class should handle only one responsibility or job. 
 //Valid Example for single responsibility
 -----------------------------------------
 class WatchMan

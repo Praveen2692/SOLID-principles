@@ -121,23 +121,23 @@ public class Payment
 Valid Example for OCP principle :
 ---------------------------------
 
-abstract class Payment {
-    abstract void pay();
+interface  Payable {
+    void pay();
 }
 
-class CashPayment extends Payment {
+class CashPayment implements Payable {
     public void pay() {
         System.out.println("Cash on delivery");
     }
 }
 
-class UpiPayment extends Payment {
+class UpiPayment implements Payable{
     public void pay() {
         System.out.println("Online Payment");
     }
 }
 
-class WalletPayment extends Payment {
+class WalletPayment implements Payable {
     public void pay() {
         System.out.println("Wallet Payment");
     }

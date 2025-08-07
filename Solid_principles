@@ -87,5 +87,70 @@ public class Employee
 }
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Open/Closed Principle (OCP)
+---------------------------
+
+Example for invalid OCP principle:
+----------------------------------
+
+public class Payment
+{
+    private void cashPay()
+    {
+        System.out.println("Cash on delivery");
+    }
+    private void UPIpayment()
+    {
+        System.out.println("Online Payment");
+    }
+    private void walletPayment()
+    {
+        System.out.println("Wallet Payment");
+    }
+    public static void main (String [] args)
+    {
+        Payment payment=new Payment();
+        payment.cashPay();
+        payment.UPIpayment();
+        payment.walletPayment();
+    }
+}
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Valid Example for OCP principle :
+---------------------------------
+
+abstract class Payment {
+    abstract void pay();
+}
+
+class CashPayment extends Payment {
+    public void pay() {
+        System.out.println("Cash on delivery");
+    }
+}
+
+class UpiPayment extends Payment {
+    public void pay() {
+        System.out.println("Online Payment");
+    }
+}
+
+class WalletPayment extends Payment {
+    public void pay() {
+        System.out.println("Wallet Payment");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Payment payment = new UpiPayment();  
+        payment.pay();
+    }
+}
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 

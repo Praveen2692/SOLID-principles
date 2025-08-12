@@ -259,5 +259,109 @@ class Robot implements Worker {
 }
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Dependency Inversion Principle (DIP):
+------------------------------------
+
+--> High-level modules should not depend on low-level modules. Both should depend on abstractions.
+
+valid example for DIP :
+-----------------------
+// Abstraction (Contract)
+interface BeverageMaker {
+    void makeBeverage();
+}
+
+// Low-level module 1
+class TeaMaker implements BeverageMaker {
+    public void makeBeverage() {
+        System.out.println("Making tea");
+    }
+}
+
+// Low-level module 2
+class CoffeeMaker implements BeverageMaker {
+    public void makeBeverage() {
+        System.out.println("Making coffee");
+    }
+}
+
+// High-level module
+class Manager {
+    private BeverageMaker maker; // Depends on abstraction
+
+    public Manager(BeverageMaker maker) {
+        this.maker = maker;
+    }
+
+    public void serveCustomer() {
+        maker.makeBeverage();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Manager can easily work with any beverage
+        BeverageMaker teaMaker = new TeaMaker();
+        BeverageMaker coffeeMaker = new CoffeeMaker();
+
+        Manager teaManager = new Manager(teaMaker);
+        teaManager.serveCustomer(); // Making tea
+
+        Manager coffeeManager = new Manager(coffeeMaker);
+        coffeeManager.serveCustomer(); // Making coffee
+    }
+}
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Invalid principle for DIP :
+--------------------------
+
+// Abstraction (Contract)
+interface BeverageMaker {
+    void makeBeverage();
+}
+
+// Low-level module 1
+class TeaMaker implements BeverageMaker {
+    public void makeBeverage() {
+        System.out.println("Making tea");
+    }
+}
+
+// Low-level module 2
+class CoffeeMaker implements BeverageMaker {
+    public void makeBeverage() {
+        System.out.println("Making coffee");
+    }
+}
+
+// High-level module
+class Manager {
+    private BeverageMaker maker; // Depends on abstraction
+
+    public Manager(BeverageMaker maker) {
+        this.maker = maker;
+    }
+
+    public void serveCustomer() {
+        maker.makeBeverage();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Manager can easily work with any beverage
+        BeverageMaker teaMaker = new TeaMaker();
+        BeverageMaker coffeeMaker = new CoffeeMaker();
+
+        Manager teaManager = new Manager(teaMaker);
+        teaManager.serveCustomer(); // Making tea
+
+        Manager coffeeManager = new Manager(coffeeMaker);
+        coffeeManager.serveCustomer(); // Making coffee
+    }
+}
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 

@@ -89,6 +89,7 @@ public class Employee
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 2)---->Open/Closed Principle (OCP)
 ---------------------------
+-----> A class should be open for extension (you can add new behavior) but closed for modification (you shouldn’t change existing code to add it).
 
 Example for invalid OCP principle:
 ----------------------------------
@@ -152,5 +153,111 @@ public class Main {
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+---> Liskov Substituion principle:
+-----------------------------
+
+* If class B is a subclass of class A, then objects of type A can be replaced with objects of type B without affecting the correctness of the program.
+
+valid example for liskov Substitution principle:
+----------------------------------------------
+
+class Bird {
+    void fly() {
+        System.out.println("Bird is flying");
+    }
+}
+
+class Sparrow extends Bird {
+    @Override
+    void fly() {
+        System.out.println("Sparrow flies fast");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Bird b = new Sparrow(); // Parent ref, child object
+        b.fly(); // Works perfectly → behaviour correct
+    }
+}
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Invalid example for liskov substitution principle :
+---------------------------------------------------
+
+class Bird {
+    void fly() {
+        System.out.println("Bird is flying");
+    }
+}
+
+class Ostrich extends Bird { // Ostrich can't fly!
+    @Override
+    void fly() {
+        throw new UnsupportedOperationException("Ostrich can't fly");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Bird b = new Ostrich(); // Parent ref, child object
+        b.fly(); // Unexpected exception → LSP broken
+    }
+}
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---> Interface Segregation : 
+     -----------------------
+
+Clients should not be forced to depend on interfaces they do not use.
+In other words, split big, fat interfaces into smaller, specific ones so that a class only implements what it actually needs.
+
+valid Example for Interface Segregation : 
+----------------------------------------
+interface Workable {
+    void work();
+}
+
+interface Eatable {
+    void eat();
+}
+
+class Robot implements Workable {
+    public void work() {
+        System.out.println("Robot working...");
+    }
+}
+
+class Human implements Workable, Eatable {
+    public void work() {
+        System.out.println("Human working...");
+    }
+    public void eat() {
+        System.out.println("Human eating...");
+    }
+}
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Invalid example for Interface Segregation : 
+------------------------------------------
+
+interface Worker {
+    void work();
+    void eat();
+}
+
+class Robot implements Worker {
+    public void work() {
+        System.out.println("Robot working...");
+    }
+    public void eat() { // Robot doesn't eat, but forced to implement
+        throw new UnsupportedOperationException("Robot can't eat");
+    }
+}
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
